@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %} Contact {% endblock title %}
+
+{% block body %}
+
+<style>
+/* Background Image Container */
+.banner-container {
+    position: relative;
+    width: 100%;
+}
+
+.banner-img {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    filter: brightness(0.85);
+}
+
+/* Overlay Button */
+.contact-btn {
+    position: absolute;
+    top: 90%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    padding: 16px 42px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid #ffffff;
+    border-radius: 50px;
+    text-decoration: none;
+    
+    transition: 0.35s ease-in-out;
+}
+
+/* Hover Effect */
+.contact-btn:hover {
+    background:;
+    color: #ffffff;
+    border-color: ;
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.25);
+}
+</style>
+
+<!-- BACKGROUND IMAGE -->
+<div class="banner-container px-0 my-0">
+    <img src="https://images.unsplash.com/photo-1648962492952-e50aa990cfdb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aWNlJTIwY3JlYW0lMjB0aGVtZSUyMGNvbnRhY3QlMjBtZXxlbnwwfHwwfHx8MA%3D%3D"
+         alt="Contact Banner"
+         class="banner-img">
+
+    <!-- UPDATED BUTTON — now opens modal -->
+    <button class="contact-btn" data-bs-toggle="modal" data-bs-target="#contactModal">
+        Contact Us
+    </button>
+</div>
+
+<!-- CONTACT FORM MODAL -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Contact Us</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="{% url 'contact_submit' %}">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="name" class="form-control" required placeholder="Enter your name">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control" required placeholder="Enter your email">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input type="text" name="phone" class="form-control" required placeholder="Enter your phone number">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea name="message" class="form-control" required rows="4" placeholder="Write your message"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Send Message</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
