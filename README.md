@@ -41,6 +41,7 @@ This project is designed with scalability, clean structure, and developer-friend
 
 
 
+
 ScoopNmore/
 │
 ├── home/
